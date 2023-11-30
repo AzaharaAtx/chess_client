@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const history = useNavigate();
+
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -15,11 +19,13 @@ export const Login = (props) => {
                 
             });
             console.log(response.data);
+            
             //Respuesta API
             // Verificar si la solicitud fue exitosa
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
                 // redirigir a otra página o mostrar un mensaje de éxito aquí
+                history.push('/user/dashboard');
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones
