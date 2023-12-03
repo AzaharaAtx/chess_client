@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
 
 
     const handleSubmit = async(e) => {
@@ -19,13 +19,16 @@ export const Login = (props) => {
                 
             });
             console.log(response.data);
-            
-            //Respuesta API
             // Verificar si la solicitud fue exitosa
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
                 // redirigir a otra página o mostrar un mensaje de éxito aquí
-                history.push('/user/dashboard');
+                navigate('./Dashboard', {
+                    replace: true,
+                    state: {
+                        logged: true
+                    },
+                });
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones
@@ -35,6 +38,7 @@ export const Login = (props) => {
             console.error("Fail to send data", error);
         }
 
+        onResetForm();
     }
 
 
@@ -43,9 +47,25 @@ export const Login = (props) => {
             <h2>Login</h2>
             <form className="register-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email </label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@domain.com" id="email" name="email" />
+                <input 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)} 
+                    type="email" 
+                    placeholder="youremail@domain.com" 
+                    id="email" 
+                    name="email" 
+                    required 
+                />
                 <label htmlFor="password">Password </label>
-                <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="*******" id="password" name="password" />
+                <input 
+                    value={pass} 
+                    onChange={(e) => setPass(e.target.value)} 
+                    type="password" 
+                    placeholder="*******" 
+                    id="password" 
+                    name="password" 
+                    required 
+                />
                 <button type="submit">Log In</button>
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don´t have an account? Sing up here!</button>

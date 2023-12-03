@@ -1,7 +1,6 @@
 import React from 'react';
-import axios from "axios";
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
+//import { BrowserRouter as Router } from 'react-router-dom';
 import './config';
 
 import './index.css';
