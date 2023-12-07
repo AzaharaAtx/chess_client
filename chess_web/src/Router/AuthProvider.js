@@ -4,7 +4,7 @@ import { createContext, useState } from "react";
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState(false);
+    const [auth, setAuth] = useState();
 
     //renderizamos aaceso componentes hijos == estado autenticado
     return(

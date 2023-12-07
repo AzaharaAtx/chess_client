@@ -25,8 +25,8 @@ const AppRouter = () => {
 
                     {/* routes requiring authentication */}
                 <Route element={<RequireAuth />} >
-                    <Route path="/" element={<Dashboard />} />
-                    <Route path="dashboard" element={<Dashboard />} /> 
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="homepage" element={<HomePage />} /> 
                     <Route path="analytics" element={<Analytics />} />
                     <Route path="about" element={<About />} />
                 </Route>

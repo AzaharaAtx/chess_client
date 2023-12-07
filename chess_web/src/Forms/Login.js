@@ -3,7 +3,7 @@ import axios from "axios";
 import "./Form.css"
 import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "../Hook/useForm";
-import useAuth from "../Router/useAuth";
+import useAuth from "../Router/useAuth.js";
 
 
 export const Login = (props) => {
@@ -12,7 +12,7 @@ export const Login = (props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
+    // const from = location.state?.from?.pathname || "/";
     const {onResetForm} = useForm();
 
     const { setAuth } = useAuth();
@@ -33,7 +33,7 @@ export const Login = (props) => {
                 console.log("Usuario logueado exitosamente:", response.data);
                 // redirigir a otra página o mostrar un mensaje de éxito aquí
                 setAuth({ email, pass });
-                navigate(from, { replace: true });
+                navigate('/dashboard', { replace: true });
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones
