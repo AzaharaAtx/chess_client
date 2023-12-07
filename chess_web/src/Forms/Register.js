@@ -29,7 +29,7 @@ export const Register = (props) => {
             if (response.status === 201) {
                 console.log("Usuario registrado exitosamente:", response.data);
                 // Puedes redirigir a otra página o mostrar un mensaje de éxito aquí
-                navigate('/user/dashboard', {
+                navigate('/dashboard', {
                     replace: true,
                     state: {
                     logged: true

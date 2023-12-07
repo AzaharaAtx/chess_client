@@ -1,16 +1,21 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import "./Form.css"
+import { useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "../Hook/useForm";
-import {useAuth} from "../config";
+import useAuth from "../Router/useAuth";
 
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+
     const navigate = useNavigate();
-    const { onResetForm } = useForm();
-    const {setAuth} = useAuth();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
+    const {onResetForm} = useForm();
+
+    const { setAuth } = useAuth();
 
 
     const handleSubmit = async(e) => {
@@ -22,18 +27,13 @@ export const Login = (props) => {
                 password: pass,
                 
             });
-            console.log(response.data);
     
-            // Verificar si la solicitud fue exitosa
+            // Verificar estado solicitud
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
                 // redirigir a otra página o mostrar un mensaje de éxito aquí
-                navigate('/dashboard', {
-                    //replace: true,
-                    state: {
-                        logged: true
-                    },
-                });
+                setAuth({ email, pass });
+                navigate(from, { replace: true });
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones
