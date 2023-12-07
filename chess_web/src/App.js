@@ -1,25 +1,19 @@
-import React, { useState } from "react";
-import { Login } from "./Forms/Login";
-import { Register } from "./Forms/Register";
+import React from "react";
+import './Forms/Form.css';
+import AppRouter from "./Router/AppRouter";
+import SwitchForm from "./Forms/SwitchForm";
 
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-    const [currentForm, setCurrentForm] = useState('login');
 
-    const toggleForm = (formName) => {
-      setCurrentForm(formName);
-    }
 
-    return (
-      <div className="App">
-        {
-          currentForm === "login" ? <Login onFormSwitch={toggleForm} />: <Register onFormSwitch={toggleForm} />
-        }
+export default function App() {
 
-      </div>
+    return (      
+      <AppRouter >    
+        <SwitchForm>
+          
+        </SwitchForm>
+      </AppRouter>  
     );
-}
+};
 
-export default App;

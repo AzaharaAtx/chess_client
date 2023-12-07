@@ -1,30 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "../Hook/useForm";
+import {useAuth} from "../config";
 
 
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const navigate = useNavigate();
+    const { onResetForm } = useForm();
+    const {setAuth} = useAuth();
 
 
     const handleSubmit = async(e) => {
         e.preventDefault();
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/login_check", {
+            const response = await axios.post("http://127.0.0.1:8000/api/login_custom", {
                 email: email,
                 password: pass,
                 
             });
             console.log(response.data);
+    
             // Verificar si la solicitud fue exitosa
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
                 // redirigir a otra página o mostrar un mensaje de éxito aquí
-                navigate('./Dashboard', {
-                    replace: true,
+                navigate('/dashboard', {
+                    //replace: true,
                     state: {
                         logged: true
                     },
@@ -54,7 +59,8 @@ export const Login = (props) => {
                     placeholder="youremail@domain.com" 
                     id="email" 
                     name="email" 
-                    required 
+                    required
+                    autoComplete="off" 
                 />
                 <label htmlFor="password">Password </label>
                 <input 
@@ -65,6 +71,7 @@ export const Login = (props) => {
                     id="password" 
                     name="password" 
                     required 
+                    autoComplete="off"
                 />
                 <button type="submit">Log In</button>
             </form>
