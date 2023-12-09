@@ -10,6 +10,7 @@ export default function App() {
     return (      
       <AuthProvider>
         <AppRouter >    
+
           <SwitchForm />
         </AppRouter> 
       </AuthProvider> 

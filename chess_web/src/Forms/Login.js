@@ -7,16 +7,18 @@ import useAuth from "../Router/useAuth.js";
 
 
 export const Login = (props) => {
+    const { setAuth } = useAuth();
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
 
+    // Obtén la ruta de redirección desde el estado de la ubicación, o utiliza "/" como valor predeterminado
     const navigate = useNavigate();
     const location = useLocation();
-    // const from = location.state?.from?.pathname || "/";
+
+    const from = location.state?.from?.pathname || "/"; //--> Pq no funciona cuando le sale de ahi -.-
+    console.log(from);
     const {onResetForm} = useForm();
-
-    const { setAuth } = useAuth();
-
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -31,9 +33,10 @@ export const Login = (props) => {
             // Verificar estado solicitud
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
-                // redirigir a otra página o mostrar un mensaje de éxito aquí
-                setAuth({ email, pass });
-                navigate('/dashboard', { replace: true });
+                    // redirigir a otra página o mostrar un mensaje de éxito aquí
+                const roles = response.data;
+                setAuth({ email, pass, roles });
+                navigate('/homepage', { replace: true });
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones

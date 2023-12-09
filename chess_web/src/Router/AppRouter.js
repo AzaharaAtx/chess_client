@@ -9,12 +9,15 @@ import {Dashboard} from '../Pages/Dashboard';
 import { Analytics } from "../Pages/Analytics";
 import { HomePage } from "../Pages/HomePage";
 import { Login } from "../Forms/Login";
-import { Register } from "../Forms/Register";
-import { Admin } from "../Pages/Admin";
 import SwitchForm from "../Forms/SwitchForm";
 import RequireAuth from "./ProtectedRoutes";
+import Unauthorized from "../Pages/Unauthorized";
+import AdminHomePage from "../AdminPanel/AdminHomePage";
+
+
 
 const AppRouter = () => {
+    
 
     return (
         <Router>
@@ -22,17 +25,20 @@ const AppRouter = () => {
                 <Route path='/' element={<SwitchForm />} />
                         {/*  public routes */}
                 <Route path="/login" element={<Login />} />
+                <Route path="/unauthorized" element={<Unauthorized />} />
 
                     {/* routes requiring authentication */}
                 <Route element={<RequireAuth />} >
-                    <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="homepage" element={<HomePage />} /> 
+                    <Route path="homepage" element={<HomePage />} />
+                    <Route path="dashboard" element={<Dashboard />} /> 
                     <Route path="analytics" element={<Analytics />} />
                     <Route path="about" element={<About />} />
                 </Route>
 
                     {/* Protected routes */}
-                <Route path="/admin" element={<Admin />} />
+                <Route element={<RequireAuth />} >
+                    <Route path="adminhomepage" element={<AdminHomePage />} />
+                </Route>
             </Routes>
         </Router>
         
