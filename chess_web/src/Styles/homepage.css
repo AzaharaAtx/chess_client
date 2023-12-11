@@ -1,0 +1,35 @@
+.home-page-container {
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.sign-out-button {
+    background-color: #ff6347;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+
+.sign-out-button:hover {
+    background-color: #d84315;
+}
+
+.navigation-menu {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px;
+}
+
+.navigation-menu-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navigation-menu-link:hover {
+    background-color: #555;
+}

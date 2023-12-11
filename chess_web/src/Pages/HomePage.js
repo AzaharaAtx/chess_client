@@ -2,25 +2,27 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../Router/AuthProvider';
 
+import '../Styles/homepage.css';
+
 export const HomePage = () => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const logout = async () => {
-        // if used in more components, this should be in context 
-        // axios to /logout endpoint 
+    // crear logout endpoint
+    const logout = async () => { 
         setAuth({});
         navigate('/');
     }
 
-
     return (
-        <div>
+        <div className="home-page-container">
             <h1>HomePage</h1>
+            <div className="navigation-menu">
+                <Link className="navigation-menu-link" to="/dashboard">Dashboard</Link>
+                <Link className="navigation-menu-link" to="/about">About</Link>
+                <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
+            </div>
             <p>You are logged in!</p>
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/about">About</Link>
-            <Link to="/analytics">Analytics</Link>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>

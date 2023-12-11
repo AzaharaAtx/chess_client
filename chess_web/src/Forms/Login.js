@@ -35,8 +35,18 @@ export const Login = (props) => {
                 console.log("Usuario logueado exitosamente:", response.data);
                     // redirigir a otra página o mostrar un mensaje de éxito aquí
                 const roles = response.data;
-                setAuth({ email, pass, roles });
-                navigate('/homepage', { replace: true });
+                console.log(roles.includes('ROLE_ADMIN'));
+
+                if (roles.includes('ROLE_ADMIN')) {
+                    setAuth({ email, pass, roles }) 
+                    navigate('/adminhomepage', { replace: true });
+                } 
+                else {
+                    setAuth({ email, pass, roles })
+                    navigate('/homepage', { replace: true });
+                }
+                setAuth({ email, pass, roles })
+
             } else {
                 console.log("Error al loguear usuario:", response.data);
                 // mostrar un mensaje de error o realizar otras acciones
