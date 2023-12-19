@@ -16,8 +16,8 @@ export const Login = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const from = location.state?.from?.pathname || "/"; //--> Pq no funciona cuando le sale de ahi -.-
-    console.log(from);
+    // const from = location.state?.from?.pathname || "/"; //--> Pq no funciona cuando le sale de ahi -.-
+    // console.log(from);
     const {onResetForm} = useForm();
 
     const handleSubmit = async(e) => {
@@ -34,8 +34,9 @@ export const Login = (props) => {
             if (response.status === 200) {
                 console.log("Usuario logueado exitosamente:", response.data);
                     // redirigir a otra página o mostrar un mensaje de éxito aquí
-                const roles = response.data;
+                const roles = response.data[0];
                 console.log(roles.includes('ROLE_ADMIN'));
+                console.log(roles);
 
                 if (roles.includes('ROLE_ADMIN')) {
                     setAuth({ email, pass, roles }) 
@@ -45,7 +46,7 @@ export const Login = (props) => {
                     setAuth({ email, pass, roles })
                     navigate('/homepage', { replace: true });
                 }
-                setAuth({ email, pass, roles })
+                // setAuth({ email, pass, roles })
 
             } else {
                 console.log("Error al loguear usuario:", response.data);

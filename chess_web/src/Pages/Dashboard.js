@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../Router/AuthProvider';
+import CheckState from '../Component/checkState';
 
 export const Dashboard = () => {
     const { setAuth } = useContext(AuthContext);
