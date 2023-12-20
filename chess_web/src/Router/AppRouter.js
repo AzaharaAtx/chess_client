@@ -13,6 +13,7 @@ import SwitchForm from "../Forms/SwitchForm";
 import { RequireAuth, RequireAdminAuth } from "./ProtectedRoutes";
 import Unauthorized from "../Pages/Unauthorized";
 import AdminHomePage from "../AdminPanel/AdminHomePage";
+import LeagueController from "../AdminPanel/LeagueController";
 
 
 
@@ -37,8 +38,8 @@ const AppRouter = () => {
                     {/* Protected routes */}
                 <Route element={<RequireAdminAuth />} >
                     <Route path="adminhomepage" element={<AdminHomePage />} />
-                    {/* <Route path="dashboard" element={<Dashboard />} /> 
-                    <Route path="analytics" element={<Analytics />} />
+                    <Route path="leaguecontroller" element={<LeagueController />} /> 
+                    {/* <Route path="analytics" element={<Analytics />} />
                     <Route path="about" element={<About />} /> */}
                 </Route>
             </Routes>

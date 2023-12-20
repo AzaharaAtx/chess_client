@@ -22,7 +22,6 @@ export const HomePage = () => {
                 <Link className="navigation-menu-link" to="/about">About</Link>
                 <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
             </div>
-            <p>You are logged in!</p>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>

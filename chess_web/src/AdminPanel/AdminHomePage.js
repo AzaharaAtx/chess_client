@@ -15,12 +15,13 @@ export const AdminHomePage = () => {
 
 
     return (
-        <div>
+        <div className="home-page-container">
             <h1>This is AdminHomePage</h1>
-            <p>You are logged in!</p>
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/about">About</Link>
-            <Link to="/analytics">Analytics</Link>
+            <div className="navigation-menu">
+                <Link className="navigation-menu-link" to="/leaguecontroller">League Controller</Link>
+                <Link className="navigation-menu-link" to="/about">About</Link>
+                <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
+            </div>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>
