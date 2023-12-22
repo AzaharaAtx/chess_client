@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const LeagueController = () => {
     const [leagueName, setLeagueName] = useState('');
     const [response, setResponse] = useState(null);
+    const [createdLeagueId, setCreatedLeagueId] = useState(null);
 
     const createLeague = async(e) => {
         e.preventDefault();
@@ -18,6 +20,7 @@ const LeagueController = () => {
             setResponse(dataResponse);
 
             if(request.status === 200) {
+                setCreatedLeagueId(dataResponse.data.id); // Guarda el ID de la liga creada
                 console.log(request.data);
             } 
             else {
@@ -50,16 +53,20 @@ const LeagueController = () => {
             </form>
 
             {response && (
-            <div>
-                <h2>{response.message}</h2>
-                <p>ID de la Liga: {response.data.id}</p>
-                <p>Nombre de la Liga: {response.data.leagueName}</p>
-                <p>Estado: {response.data.status}</p>
-            </div>
-        )};
+                <div>
+                    <h2>{response.message}</h2>
+                    <p>ID de la Liga: {response.data.id}</p>
+                    <p>Nombre de la Liga: {response.data.leagueName}</p>
+                    <p>Estado: {response.data.status}</p>
+                </div>
+            )};
+            {createdLeagueId && (
+                <div>
+                    <p>¡Liga creada con ID: {createdLeagueId}!</p>
+                </div>
+            )}
         </div>
 
-        
     );
 };
 

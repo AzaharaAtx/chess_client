@@ -14,6 +14,7 @@ import { RequireAuth, RequireAdminAuth } from "./ProtectedRoutes";
 import Unauthorized from "../Pages/Unauthorized";
 import AdminHomePage from "../AdminPanel/AdminHomePage";
 import LeagueController from "../AdminPanel/LeagueController";
+import { Leagues } from "../Pages/Leagues";
 
 
 
@@ -32,6 +33,7 @@ const AppRouter = () => {
                     <Route path="homepage" element={<HomePage />} />
                     <Route path="dashboard" element={<Dashboard />} /> 
                     <Route path="analytics" element={<Analytics />} />
+                    <Route path="leagues" element={<Leagues />} />
                     <Route path="about" element={<About />} />
                 </Route>
 

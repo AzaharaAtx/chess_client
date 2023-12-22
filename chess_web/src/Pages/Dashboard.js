@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../Router/AuthProvider';
-import CheckState from '../Component/checkState';
+import { Leagues } from './Leagues';
 
 export const Dashboard = () => {
     const { setAuth } = useContext(AuthContext);
@@ -18,11 +18,15 @@ export const Dashboard = () => {
             <h1>Dashboard</h1>
             
             <div className="navigation-menu">
-                <Link className="navigation-menu-link" to="/dashboard">Dashboard</Link>
+                <Link className="navigation-menu-link" to="/homepage">Homepage</Link>
                 <Link className="navigation-menu-link" to="/about">About</Link>
                 <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
             </div>
             <p>You are logged in!</p>
+            <div>
+                {/* Renderiza el componente Leagues como un botón */}
+            <button onClick={() => navigate('/leagues')}>Ver Ligas</button>
+            </div>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>
             </div>

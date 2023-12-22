@@ -35,8 +35,9 @@ export const Login = (props) => {
                 console.log("Usuario logueado exitosamente:", response.data);
                     // redirigir a otra página o mostrar un mensaje de éxito aquí
                 const roles = response.data[0];
+                const id = response.data[1];
                 console.log(roles.includes('ROLE_ADMIN'));
-                console.log(roles);
+                console.log(roles, id);
 
                 if (roles.includes('ROLE_ADMIN')) {
                     setAuth({ email, pass, roles }) 

@@ -10,6 +10,7 @@ export const Register = (props) => {
     const [pass, setPass] = useState('');
     const [full_name, setFull_name] = useState('');
     const [last_name, setLast_name] = useState('');
+    const [username, setUsername] = useState('');
     const { onResetForm } = useForm();
     const navigate = useNavigate();
     
@@ -17,11 +18,12 @@ export const Register = (props) => {
         e.preventDefault();
         
         try {
-            const response = await axios.post("http://127.0.0.1:8000/user/register", {
+            const response = await axios.post("http://127.0.0.1:8000/api/user/create", {
                 email: email,
-                password: pass,
+                username_in_chess: username,
                 last_name: last_name,
-                full_name: full_name
+                full_name: full_name,
+                password: pass               
             });
             console.log(response.data);
             //Respuesta API
@@ -60,14 +62,14 @@ export const Register = (props) => {
                     required
                     autoComplete="off"
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="username">Your username in chess.com</label>
                 <input 
-                    value={pass} 
-                    onChange={(e) => setPass(e.target.value)} 
-                    type="password" 
-                    placeholder="*******" 
-                    id="password" 
-                    name="password" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    type="username" 
+                    placeholder="Username" 
+                    id="username_in_chess" 
+                    name="username_in_chess" 
                     required 
                     autoComplete="off"
                 />
@@ -90,6 +92,17 @@ export const Register = (props) => {
                     placeholder="Name" 
                     id="full_name" 
                     name="full_name" 
+                    required 
+                    autoComplete="off"
+                />
+                <label htmlFor="password">Password</label>
+                <input 
+                    value={pass} 
+                    onChange={(e) => setPass(e.target.value)} 
+                    type="password" 
+                    placeholder="*******" 
+                    id="password" 
+                    name="password" 
                     required 
                     autoComplete="off"
                 />

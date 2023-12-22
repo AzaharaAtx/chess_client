@@ -18,7 +18,7 @@ export const AdminHomePage = () => {
         <div className="home-page-container">
             <h1>This is AdminHomePage</h1>
             <div className="navigation-menu">
-                <Link className="navigation-menu-link" to="/leaguecontroller">League Controller</Link>
+                <Link className="navigation-menu-link" to="/leaguecontroller">Leagues</Link>
                 <Link className="navigation-menu-link" to="/about">About</Link>
                 <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
             </div>
