@@ -8,6 +8,12 @@ export const Leagues = () => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     const [response, setResponse] = useState([]);
+    const [idLeague, setIdLeague] = useState('');
+    
+    // const token = localStorage.getItem('token');
+    // if (token) {
+    // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    // }
 
 
     // crear logout endpoint
@@ -21,8 +27,9 @@ export const Leagues = () => {
             try {
                 const request = await axios.get("http://127.0.0.1:8000/api/league/view_open_league");
                 const leaguesData = request.data;
-                
-                setResponse(leaguesData);
+                const parsedData = JSON.parse(leaguesData[0]);
+
+                setResponse(parsedData);
             } 
             catch (error) {
                 console.error("Fail to fetch data", error);
@@ -31,6 +38,25 @@ export const Leagues = () => {
 
         fetchLeagues();
     }, []);
+
+    const handleEnroll = async (leagueId) => {
+        try {
+            // Obtener el token almacenado en localStorage
+            const token = localStorage.getItem('jwt_token');
+
+            // Configurar la cabecera con el token
+            const headers = {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json', // Asegúrate de establecer el tipo de contenido adecuado
+            };
+                // Lógica para enviar una solicitud de inscripción a la liga con el ID leagueId
+            const enrollmentResponse = await axios.post(`http://127.0.0.1:8000/api/league/enroll/${leagueId}`, null, { headers } );
+            // Manejar la respuesta de la inscripción según tus necesidades
+            console.log("Enrollment Response:", enrollmentResponse.data);
+        } catch (error) {
+            console.error("Fail to enroll in the league", error);
+        }
+    };
 
     
     console.log(response);
@@ -62,6 +88,11 @@ export const Leagues = () => {
                             <td>{league.rounds ? league.rounds.join(', ') : 'N/A'}</td>
                             <td>{league.softDelete ?? 'N/A'}</td>
                             <td>{league.winnerLeague ?? 'N/A'}</td>
+                            <td>
+                                {league.status === "Initial state" && (
+                                    <button onClick={() => handleEnroll(league.id)}>Inscribirse</button>
+                                )}
+                            </td>
                         </tr>
                     ))}
                 </tbody>

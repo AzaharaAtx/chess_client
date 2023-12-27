@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../Router/AuthProvider';
 import { Leagues } from './Leagues';
@@ -6,6 +6,7 @@ import { Leagues } from './Leagues';
 export const Dashboard = () => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [showLeagues, setShowLeagues] = useState(false);
 
     // crear logout endpoint
     const logout = async () => { 
@@ -24,8 +25,10 @@ export const Dashboard = () => {
             </div>
             <p>You are logged in!</p>
             <div>
-                {/* Renderiza el componente Leagues como un botón */}
-            <button onClick={() => navigate('/leagues')}>Ver Ligas</button>
+                {showLeagues && <Leagues />}
+                <button onClick={() => setShowLeagues(!showLeagues)}>
+                    {showLeagues ? 'Ocultar Ligas' : 'Mostrar Ligas'}
+                </button>
             </div>
             <div className="flexGrow">
                 <button onClick={logout}>Sign Out</button>

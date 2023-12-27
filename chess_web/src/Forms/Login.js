@@ -11,13 +11,10 @@ export const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [token, setToken] = useState('');
 
-    // Obtén la ruta de redirección desde el estado de la ubicación, o utiliza "/" como valor predeterminado
     const navigate = useNavigate();
-    const location = useLocation();
-
-    // const from = location.state?.from?.pathname || "/"; //--> Pq no funciona cuando le sale de ahi -.-
-    // console.log(from);
+    
     const {onResetForm} = useForm();
 
     const handleSubmit = async(e) => {
@@ -29,13 +26,19 @@ export const Login = (props) => {
                 password: pass,
                 
             });
-    
             // Verificar estado solicitud
             if (response.status === 200) {
+
                 console.log("Usuario logueado exitosamente:", response.data);
-                    // redirigir a otra página o mostrar un mensaje de éxito aquí
+
                 const roles = response.data[0];
                 const id = response.data[1];
+                const token = response.data[2];
+
+                localStorage.setItem('jwt_token', token);
+                setToken(token);
+
+                console.log(token);
                 console.log(roles.includes('ROLE_ADMIN'));
                 console.log(roles, id);
 
@@ -47,14 +50,11 @@ export const Login = (props) => {
                     setAuth({ email, pass, roles })
                     navigate('/homepage', { replace: true });
                 }
-                // setAuth({ email, pass, roles })
 
             } else {
                 console.log("Error al loguear usuario:", response.data);
-                // mostrar un mensaje de error o realizar otras acciones
             }
         } catch (error) {
-            //Errores
             console.error("Fail to send data", error);
         }
 
