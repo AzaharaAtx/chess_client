@@ -8,13 +8,6 @@ export const Leagues = () => {
     const { setAuth } = useContext(AuthContext);
     const navigate = useNavigate();
     const [response, setResponse] = useState([]);
-    const [idLeague, setIdLeague] = useState('');
-    
-    // const token = localStorage.getItem('token');
-    // if (token) {
-    // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    // }
-
 
     // crear logout endpoint
     const logout = async () => { 
@@ -23,9 +16,10 @@ export const Leagues = () => {
     }
 
     useEffect(() => {
+
         const fetchLeagues = async () => {
             try {
-                const request = await axios.get("http://127.0.0.1:8000/api/league/view_open_league");
+                const request = await axios.get("http://127.0.0.1:8000/api/league/view_init_league");
                 const leaguesData = request.data;
                 const parsedData = JSON.parse(leaguesData[0]);
 
@@ -41,17 +35,14 @@ export const Leagues = () => {
 
     const handleEnroll = async (leagueId) => {
         try {
-            // Obtener el token almacenado en localStorage
             const token = localStorage.getItem('jwt_token');
 
-            // Configurar la cabecera con el token
             const headers = {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json', // Asegúrate de establecer el tipo de contenido adecuado
+                'Content-Type': 'application/json', 
             };
-                // Lógica para enviar una solicitud de inscripción a la liga con el ID leagueId
             const enrollmentResponse = await axios.post(`http://127.0.0.1:8000/api/league/enroll/${leagueId}`, null, { headers } );
-            // Manejar la respuesta de la inscripción según tus necesidades
+
             console.log("Enrollment Response:", enrollmentResponse.data);
         } catch (error) {
             console.error("Fail to enroll in the league", error);
