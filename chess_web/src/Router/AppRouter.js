@@ -1,9 +1,5 @@
-/**
- * Colocamos todas las rutas que necesita nuestra app 
- */
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Sidebar } from "../Sidebar";
 import { About } from "../Pages/About";
 import {Dashboard} from '../Pages/Dashboard';
 import { Analytics } from "../Pages/Analytics";
@@ -15,6 +11,7 @@ import Unauthorized from "../Pages/Unauthorized";
 import AdminHomePage from "../AdminPanel/AdminHomePage";
 import LeagueController from "../AdminPanel/LeagueController";
 import { Leagues } from "../Pages/Leagues";
+import { Controller } from "../AdminPanel/Controller";
 
 
 
@@ -41,6 +38,7 @@ const AppRouter = () => {
                 <Route element={<RequireAdminAuth />} >
                     <Route path="adminhomepage" element={<AdminHomePage />} />
                     <Route path="leaguecontroller" element={<LeagueController />} /> 
+                    <Route path="leaguecontroller/controller" element={<Controller />} /> 
                     {/* <Route path="analytics" element={<Analytics />} />
                     <Route path="about" element={<About />} /> */}
                 </Route>

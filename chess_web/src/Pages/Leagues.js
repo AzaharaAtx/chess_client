@@ -19,7 +19,7 @@ export const Leagues = () => {
 
         const fetchLeagues = async () => {
             try {
-                const request = await axios.get("http://127.0.0.1:8000/api/league/view_init_league");
+                const request = await axios.get("http://127.0.0.1:8000/api/league/view/init/league");
                 const leaguesData = request.data;
                 const parsedData = JSON.parse(leaguesData[0]);
 
