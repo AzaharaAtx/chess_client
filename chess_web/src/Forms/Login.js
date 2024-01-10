@@ -12,6 +12,8 @@ export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [token, setToken] = useState('');
+    const [welcomeMessage, setWelcomeMessage] = useState('');
+
 
     const navigate = useNavigate();
     
@@ -26,7 +28,6 @@ export const Login = (props) => {
                 password: pass,
                 
             });
-            // Verificar estado solicitud
             if (response.status === 200) {
 
                 console.log("Usuario logueado exitosamente:", response.data);
@@ -34,11 +35,19 @@ export const Login = (props) => {
                 const roles = response.data[0];
                 const id = response.data[1];
                 const token = response.data[2];
+                const name = response.data[3];
+                const username = response.data[4];
+
 
                 localStorage.setItem('jwt_token', token);
+                localStorage.setItem('username_in_chess', username);
+                localStorage.setItem('full_name', name);
+
                 setToken(token);
+                setWelcomeMessage(`Hola, ${username}.`);
 
                 console.log(token);
+                console.log(username);
                 console.log(roles.includes('ROLE_ADMIN'));
                 console.log(roles, id);
 
@@ -58,7 +67,7 @@ export const Login = (props) => {
             console.error("Fail to send data", error);
         }
 
-        onResetForm();
+        onResetForm('');
     }
 
 
@@ -78,17 +87,20 @@ export const Login = (props) => {
                     autoComplete="off" 
                 />
                 <label htmlFor="password">Password </label>
-                <input 
-                    value={pass} 
-                    onChange={(e) => setPass(e.target.value)} 
-                    type="password" 
-                    placeholder="*******" 
-                    id="password" 
-                    name="password" 
-                    required 
-                    autoComplete="off"
-                />
-                <button type="submit">Log In</button>
+                {/* <div className="input-container"> */}
+                    <input 
+                        value={pass} 
+                        onChange={(e) => setPass(e.target.value)} 
+                        type="password" 
+                        placeholder="*******" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        autoComplete="off"
+                    />
+                    <button className="button" type="submit">Log In</button>
+                {/* </div> */}
+                
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don´t have an account? Sing up here!</button>
         </div>

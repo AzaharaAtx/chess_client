@@ -96,17 +96,19 @@ export const Register = (props) => {
                     autoComplete="off"
                 />
                 <label htmlFor="password">Password</label>
-                <input 
-                    value={pass} 
-                    onChange={(e) => setPass(e.target.value)} 
-                    type="password" 
-                    placeholder="*******" 
-                    id="password" 
-                    name="password" 
-                    required 
-                    autoComplete="off"
-                />
-                <button type="submit">Sing Up</button>
+                {/* <div className="input-container"> */}
+                    <input 
+                        value={pass} 
+                        onChange={(e) => setPass(e.target.value)} 
+                        type="password" 
+                        placeholder="*******" 
+                        id="password" 
+                        name="password" 
+                        required 
+                        autoComplete="off"
+                    />
+                    <button className="button" type="submit">Sing Up</button>
+                {/* </div> */}
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here!</button>
         </div>

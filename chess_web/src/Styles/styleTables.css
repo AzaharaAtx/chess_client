@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+body {
+    font-family: "Roboto", sans-serif;
+    overflow-x: auto;
+    height: 100%;
+    margin: 0;
+    padding: 0; 
+}
+
+/* Vars */
+:root {
+    --black-2: #2b2d32;
+}
+
+.tittle {
+    margin-left: 10%;
+}
+
+/* Styles for table */
+table {
+    overflow-x: auto;
+    width: 85%;
+    border-spacing: 0;
+    text-align: center;
+    margin-left: 10%; 
+    
+
+    
+    th {
+        font-weight: 300;
+        font-size: 12px;
+        color: #ffffff;
+        line-height: 26px;
+        padding: 18px 30px;
+        font-weight: 500;
+        
+    }
+    
+    thead {
+        tr {
+            background: rgb(226, 83, 255);
+        }
+    }
+    
+    td {
+        padding: 30px 30px 31px;
+        font-weight: 300;
+        font-size: 11px;
+        color: var(--black-2);
+        line-height: 26px;
+        text-transform: uppercase;
+        
+    }
+    
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background: white;
+            }
+            
+            &:nth-child(even) {
+                background: #f8fbfc;
+            }
+        }
+        &__wrapper {
+            padding-top: 40px;
+        }
+    }
+}
+
+/* Style enroll button */
+.enroll {
+    font-size: 11px;
+    display: inline-block;
+    border: none;
+    position: relative;
+    /* background-color: white; */
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(255, 94, 223, 0.342) 0%, rgba(191, 84, 196, 0.494) 100%);
+    padding: 10px 10px 10px;
+    border-radius: 999px;
+    border-color: #000000;
+    cursor: pointer;
+    color: #7439db;
+    overflow: hidden;
+    transition-duration: 0.4s;
+    transition: all 150ms ease;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.enroll:hover { 
+    color: #7439db;
+    background-color: rgb(225, 192, 255);
+}
+
+/* Media styles for table */
+@media (max-width: 768px) {
+    table {
+        td {
+            display: block;
+            text-align: right;
+            
+            &:before {
+                content: attr(data-label);
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+        
+        thead {
+            display: none;
+        }
+        
+        tr {
+            margin-bottom: 30px;
+            display: block;
+        }
+    }
+}

@@ -12,6 +12,8 @@ import AdminHomePage from "../AdminPanel/AdminHomePage";
 import LeagueController from "../AdminPanel/LeagueController";
 import { Leagues } from "../Pages/Leagues";
 import { Controller } from "../AdminPanel/Controller";
+import UserController from "../AdminPanel/UserController";
+import LogoutButton from "../Component/Logout";
 
 
 
@@ -32,16 +34,16 @@ const AppRouter = () => {
                     <Route path="analytics" element={<Analytics />} />
                     <Route path="dashboard/leagues" element={<Leagues />} />
                     <Route path="about" element={<About />} />
-                </Route>
+                    <Route path="logout" element={<LogoutButton />} />                </Route>
 
                     {/* Protected routes */}
                 <Route element={<RequireAdminAuth />} >
                     <Route path="adminhomepage" element={<AdminHomePage />} />
                     <Route path="leaguecontroller" element={<LeagueController />} /> 
                     <Route path="leaguecontroller/controller" element={<Controller />} /> 
-                    {/* <Route path="analytics" element={<Analytics />} />
-                    <Route path="about" element={<About />} /> */}
-                </Route>
+                    <Route path="usercontroller" element={<UserController />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="logout" element={<LogoutButton />} />                </Route>
             </Routes>
         </Router>
         

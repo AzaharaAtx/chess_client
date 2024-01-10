@@ -61,7 +61,7 @@ return (
 				</tr>
 			</thead>
 			<tbody>
-			    {Array.isArray(getOpenLeagues) && getOpenLeagues.map(league => (
+			{Array.isArray(getOpenLeagues) && getOpenLeagues.map(league => (
 				<tr key={league.id}>
 					<td>{league.id}</td>
 					<td>{league.leagueName}</td>
@@ -78,7 +78,7 @@ return (
 					</td>
 				</tr>
                 ))}
-		    </tbody>
+		</tbody>
 		</table>
 	</div>
 
