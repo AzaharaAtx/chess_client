@@ -1,23 +1,13 @@
 import axios from "axios";
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import AuthContext from '../Router/AuthProvider';
+import React, { useState, useEffect } from "react";
+
 import '../Styles/styleTables.css';
 import '../Styles/homepage.css';
 
 
 export const Leagues = () => {
-    const { setAuth } = useContext(AuthContext);
-    const navigate = useNavigate();
     const [response, setResponse] = useState([]);
     const [enrollmentMessage, setEnrollmentMessage] = useState('');
-
-
-    // crear logout endpoint
-    const logout = async () => { 
-        setAuth({});
-        navigate('/');
-    }
 
     useEffect(() => {
 
@@ -77,31 +67,31 @@ export const Leagues = () => {
             <>
             <h3 className="tittle">Open Leagues</h3>
             <table className="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                <thead className="thead">
+                    <tr className="tr" >
+                        <th className="th">ID</th>
+                        <th className="th">Name</th>
+                        <th className="th">Status</th>
+                        <th className="th">Start Date</th>
+                        <th className="th">End Date</th>
                         {/* <th>Rounds</th> */}
                         {/* <th>Soft Delete</th> */}
                         {/* <th>Winner League</th> */}
-                        <th>Enroll</th>
+                        <th className="th">Enroll</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="tbody">
                         {Array.isArray(response) && response.map(league => (
-                            <tr key={league.id}>
-                                <td data-label="ID" >{league.id}</td>
-                                <td data-label="Name">{league.leagueName}</td>
-                                <td data-label="Status">{league.status}</td>
-                                <td data-label="Start Date">{league.startDate ? new Date(league.startDate).toLocaleDateString() : 'N/A'}</td>
-                                <td data-label="End Date">{league.endDate ? new Date(league.endDate).toLocaleDateString() : 'N/A'}</td>
+                            <tr className="tr" key={league.id}>
+                                <td className="td" data-label="ID" >{league.id}</td>
+                                <td className="td" data-label="Name">{league.leagueName}</td>
+                                <td className="td" data-label="Status">{league.status}</td>
+                                <td className="td" data-label="Start Date">{league.startDate ? new Date(league.startDate).toLocaleDateString() : 'N/A'}</td>
+                                <td className="td" data-label="End Date">{league.endDate ? new Date(league.endDate).toLocaleDateString() : 'N/A'}</td>
                                 {/* <td>{league.rounds ? league.rounds.join(', ') : 'N/A'}</td> */}
                                 {/* <td data-label="ID">{league.softDelete ?? 'N/A'}</td> */}
                                 {/* <td>{league.winnerLeague ?? 'N/A'}</td> */}
-                                <td data-label="Enroll" className="enroll-btn">
+                                <td className="td" data-label="Enroll" id="enroll-btn">
                                     {league.status === "Initial state" && (
                                         <button className="enroll enroll_active" onClick={() => handleEnroll(league.id)}>Inscribirse</button>
                                     )}

@@ -2,7 +2,7 @@
 
 
 body {
-    overflow-x: auto;
+    overflow-x: hidden;
     background-color: #f0f0f0;
     height: 100%;
     margin: 0;
@@ -84,24 +84,26 @@ body {
 } 
 
 .home-page-container {
-    overflow-x: auto;
+    font-family: 'Montserrat', sans-serif;
     padding: 20px;
     background-color: #f0f0f0;
 }
 
 .navigation-menu {
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     justify-content: space-between;
     background-color: #ab53a8e9;
     padding: 10px;
+    border-radius: 15px;
+
 }
 
 #btn-link {
     border: none;
     font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    color: #fff;
-    background-color: #ab53a8e9;
+    font-size: 16px;
+    background-color: #b65ab3e9;
     text-decoration: none;
     padding: 8px 16px;
     border-radius: 4px;
@@ -114,6 +116,7 @@ body {
 
 .navigation-menu-link {
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
     color: #fff;
     text-decoration: none;
     padding: 8px 16px;
@@ -150,26 +153,6 @@ body {
 }
 
 .show-leagues-button:hover {
-    color: #7439db;
-    background-color: rgb(225, 192, 255);
-}
-
-.sign-out-button {
-    font-size: 12px;
-    display: inline-block;
-    border: none;
-    height: auto;
-    width: auto; 
-    background-color: white;
-    margin-left: 86%;
-    margin-top: 10px;
-    border-radius: 15px;
-    cursor: pointer;
-    color: #7439db;
-    transition-duration: 0.4s;
-}
-
-.sign-out-button:hover {
     color: #7439db;
     background-color: rgb(225, 192, 255);
 }

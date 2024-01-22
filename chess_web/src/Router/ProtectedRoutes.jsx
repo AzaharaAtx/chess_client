@@ -5,7 +5,6 @@ import useAuth from "./useAuth";
 export const RequireAuth = () => {
     const { auth } = useAuth();
     const location = useLocation();
-    console.log('estoy aqui');
 
     return (
         auth?.email 
@@ -18,10 +17,9 @@ export const RequireAuth = () => {
 export const RequireAdminAuth = () => {
     const { auth } = useAuth();
     const location = useLocation();
-    console.log('estoy aqui admin', auth?.roles.includes('ROLE_ADMIN'));
 
     return (
-        auth?.roles.includes('ROLE_ADMIN')
+        auth?.roles && auth.roles.includes('ROLE_ADMIN')
             ? <Outlet />
             : <Navigate to="/" state={{from: location}} replace />
     );

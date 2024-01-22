@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+
+.flexContainer {
+    display: flex;
+    
+    
+}
+
+.containerForm {
+    overflow-x: auto;
+    max-width: fit-content;
+    text-align: center;
+    /* margin: auto; */
+    flex: 0 0 30%;
+    padding-left: 10%;
+    margin-top: auto;
+    margin-right: 20px;
+    background-color: rgba(205, 162, 255, 0.237);
+
+    .headerForm {
+        font-family: 'Montserrat', sans-serif;
+    }
+    
+
+    .leagueForm {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 18px;
+        text-align: left;
+        display: block;
+        flex-direction: column;
+    
+        label {
+            font-weight: bolder;
+            text-align: left;
+            display: block;
+            margin-bottom: 10px;
+    
+        }
+    
+        input {
+            margin: 0.5rem 0;
+            box-sizing: border-box;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.btnLeague {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    border: none;
+    background-color: white;
+    padding: 10px 10px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #7439db;
+    transition-duration: 0.4s;
+    margin-top: 10px;
+}
+
+.btnLeague:hover {
+    color: #7439db;
+    background-color: rgb(225, 192, 255);
+}
+
+
+@media screen and (min-width: 400px) {
+    .containerForm {
+        padding: 5rem;
+        border: 1px solid white;
+        border-radius: 10px;
+        margin: 0.5rem;
+    }
+}
+
+.containerCreated {
+    overflow-x: auto;
+    max-width: fit-content;
+    text-align: center;
+    flex: 0 0 30%;
+    padding-left: 10%;
+    margin-top: auto;
+    margin-right: 20px;
+    background-color: rgba(205, 162, 255, 0.237);
+}
+

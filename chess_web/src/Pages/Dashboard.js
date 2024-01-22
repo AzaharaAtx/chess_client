@@ -9,47 +9,6 @@ import LogoutButton from '../Component/Logout';
 
 export const Dashboard = () => {
     const [showLeagues, setShowLeagues] = useState(false);
-    const [welcomeMessage, setWelcomeMessage] = useState('');
-
-    const handleClickOutside = (e) => {
-        setWelcomeMessage('');
-        const divMsg = document.querySelector('.div-msg');
-        if (divMsg && !divMsg.contains(e.target)) {
-            divMsg.style.display = 'none';
-        }
-    };
-
-    useEffect(() => {
-        const welcomeMessage = localStorage.getItem('username_in_chess');
-
-        if (welcomeMessage) {
-            console.log(welcomeMessage);
-
-            setWelcomeMessage((`Welcome, ${welcomeMessage}!`));        
-        }
-
-        const clearLocalStorageTimer = setTimeout(() => {
-            localStorage.removeItem('username_in_chess');
-        }, 5000);
-
-        const handleBeforeUnload = () => {
-            localStorage.removeItem('username_in_chess');
-            const divMsg = document.querySelector('.div-msg');
-            if (divMsg) {
-                divMsg.innerHTML = '';
-            }
-        };
-
-        window.addEventListener('beforeunload', handleBeforeUnload);
-        document.addEventListener('click', handleClickOutside);
-
-        return () => {
-            clearTimeout(clearLocalStorageTimer);
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-            document.removeEventListener('click', handleClickOutside);
-        };
-
-    }, []);
 
     return (
         <div className="home-page-container">
@@ -58,9 +17,6 @@ export const Dashboard = () => {
                 <Link className="navigation-menu-link" to="/about">About</Link>
                 <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
                 <LogoutButton /> 
-            </div>
-            <div className='div-msg'>
-                <p>{welcomeMessage}</p>
             </div>
             <br />
             <div>
