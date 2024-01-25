@@ -113,6 +113,9 @@ const UserController = () =>{
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
+            <div>
+                {editMsg && <p className='msg'>{editMsg}</p>}
+            </div>
                     <table className="tableuser">
                         <thead className="tableThead">
                             <tr className="tableTr">
@@ -225,9 +228,7 @@ const UserController = () =>{
                         </tbody>
                     </table>
                     </div>
-                    <div>
-                        {editMsg && <p>{editMsg}</p>}
-                    </div>
+                    
                 </>
     )
 }

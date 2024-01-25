@@ -1,29 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-.tableContainer {
+.tittle {
+    font-family: 'Montserrat', sans-serif;
+    margin: 15px;
+    text-align: center;
+
+
+}
+
+.tableLeagueContainer {
     margin: 15px;
     max-height: 400px; 
-
-    
+    overflow-y: auto; 
+    overflow-x: auto; 
 }
 
-.msg{
-    font-family: 'Montserrat', sans-serif;
-    align-self: center; 
-    font-size: 14px;
-    margin: auto;
-    font-weight: bold;
-
-
-
-
-}
-
-.search {
-    margin: 10px 10px 10px 30px;
-}
-
-.tableuser {
+.tableLeague {
     font-family: 'Montserrat', sans-serif;
     width: 60%;
     border-collapse: collapse;
@@ -32,7 +24,7 @@
     align-self: center; 
 }
 
-.tableThead {
+.theadTable {
     background-color: #9454add2;
     color: #fff;
     font-size: 14px;
@@ -40,8 +32,8 @@
 }
 
 
-.tableTh,
-.tableTd {
+.thTable,
+.tdTable {
     padding: 12px;
     text-align: left;
     border: 1px solid #ddd;
@@ -49,13 +41,13 @@
     text-align: center;
 }
 
-.tableTbody tr:nth-child(even) {
+.tbodyTable tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 /* Estilos responsive */
 @media (max-width: 768px) {
-    .tableContainer {
+    .tableLeagueContainer {
         max-height: none; /* Ajusta según sea necesario para pantallas más pequeñas */
         overflow-x: auto;
     }
@@ -66,22 +58,22 @@
         overflow-x: auto;
     }
 
-    .tableThead,
-    .tableTbody,
-    .tableTr,
-    .tableTh,
-    .tableTd {
+    .theadTable,
+    .tbodyTable,
+    .trTable,
+    .thTable,
+    .tdTable {
         display: block;
         width: 100%;
     }
 
-    .tableTh,
-    .tableTd {
+    .thTable,
+    .tdTable {
         text-align: center;
     }
 }
 
-.btn-control {
+.control-btn {
     font-size: 14px;
     font-weight: bold;
     font-family: 'Montserrat', sans-serif;
@@ -96,11 +88,32 @@
     margin-top: 10px;
 }
 
-.btn-control:hover {
+.control-btn:hover {
     color: #7439db;
     background-color: rgb(225, 192, 255);
 }
 
+.controlShow {
+    font-size: 14px;
+    font-weight: bold;
+    width: auto;
+    min-width: 100px;
+    white-space: nowrap;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    border: none;
+    background-color: white;
+    padding: 10px 10px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #7439db;
+    transition-duration: 0.4s;
+    margin: auto;
+}
 
+.controlShow:hover {
+    color: #7439db;
+    background-color: rgb(225, 192, 255);
+}
 
 

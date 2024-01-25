@@ -36,8 +36,7 @@ export const DropdownUser = () => {
 			{isOpen && (
 				<ul className="dropdown-list">
 					<li><Link className="navigation-menu-link" to="/usercontroller">User List</Link></li>
-					<li><Link className="navigation-menu-link" to="/usercontroller">User List</Link></li>
-					<li>Elemento 3</li>
+					
 				</ul>
 				)}
 		</div>

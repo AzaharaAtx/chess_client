@@ -46,7 +46,6 @@ const AppRouter = () => {
                     <Route path="leaguecontroller" element={<LeagueController />} />
                     <Route path="editleague" element={<EditLeague />} />
                     <Route path="roundcontroller" element={<RoundController />} />
-                    <Route path="editwinner" element={<EditWinner />} />
                     <Route path="leaguecontroller/controller" element={<Controller />} /> 
                     <Route path="usercontroller" element={<UserController />} />
                     <Route path="logout" element={<LogoutButton />} />                
