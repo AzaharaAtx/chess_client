@@ -3,6 +3,8 @@
 
 .flexContainer {
     display: flex;
+    margin: auto; 
+
     
     
 }
@@ -11,11 +13,11 @@
     overflow-x: auto;
     max-width: fit-content;
     text-align: center;
-    /* margin: auto; */
+    margin: 50px 50px 50px 50px; 
     flex: 0 0 30%;
     padding-left: 10%;
     margin-top: auto;
-    margin-right: 20px;
+    margin-right: 50px;
     background-color: rgba(205, 162, 255, 0.237);
 
     .headerForm {
@@ -29,20 +31,24 @@
         text-align: left;
         display: block;
         flex-direction: column;
+        margin: auto; 
+        align-content: center;
+
     
-        label {
+        .labelForm {
             font-weight: bolder;
             text-align: left;
             display: block;
-            margin-bottom: 10px;
-    
+            margin-bottom: 10px;    
         }
     
-        input {
+        .labelLabel {
             margin: 0.5rem 0;
             box-sizing: border-box;
             border-radius: 10px;
             margin-bottom: 10px;
+            
+            
         }
     }
 }
@@ -69,7 +75,7 @@
 
 
 @media screen and (min-width: 400px) {
-    .containerForm {
+    .containerForm, .containerCreated {
         padding: 5rem;
         border: 1px solid white;
         border-radius: 10px;
@@ -82,9 +88,20 @@
     max-width: fit-content;
     text-align: center;
     flex: 0 0 30%;
-    padding-left: 10%;
-    margin-top: auto;
-    margin-right: 20px;
     background-color: rgba(205, 162, 255, 0.237);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    text-align: left;
+    display:inline-flex;
+    flex-direction: column;
+    margin: 50px 50px 50px 50px; 
+    align-content: center;
+
+    .createdLeague {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        text-align: left;
+
+    }
 }
 

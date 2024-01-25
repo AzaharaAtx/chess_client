@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 
-import '../Styles/styleTables.css';
+import '../Styles/leagueTable.css';
 import '../Styles/homepage.css';
 
 
@@ -66,34 +66,34 @@ export const Leagues = () => {
         <div>
             <>
             <h3 className="tittle">Open Leagues</h3>
-            <table className="table">
-                <thead className="thead">
-                    <tr className="tr" >
-                        <th className="th">ID</th>
-                        <th className="th">Name</th>
-                        <th className="th">Status</th>
-                        <th className="th">Start Date</th>
-                        <th className="th">End Date</th>
+            <table className="tableLeague">
+                <thead className="theadTable">
+                    <tr className="trTable" >
+                        <th className="thTable">ID</th>
+                        <th className="thTable">Name</th>
+                        <th className="thTable">Status</th>
+                        <th className="thTable">Start Date</th>
+                        <th className="thTable">End Date</th>
                         {/* <th>Rounds</th> */}
                         {/* <th>Soft Delete</th> */}
                         {/* <th>Winner League</th> */}
-                        <th className="th">Enroll</th>
+                        <th className="thTable">Enroll</th>
                     </tr>
                     </thead>
-                    <tbody className="tbody">
+                    <tbody className="tbodyTable">
                         {Array.isArray(response) && response.map(league => (
-                            <tr className="tr" key={league.id}>
-                                <td className="td" data-label="ID" >{league.id}</td>
-                                <td className="td" data-label="Name">{league.leagueName}</td>
-                                <td className="td" data-label="Status">{league.status}</td>
-                                <td className="td" data-label="Start Date">{league.startDate ? new Date(league.startDate).toLocaleDateString() : 'N/A'}</td>
-                                <td className="td" data-label="End Date">{league.endDate ? new Date(league.endDate).toLocaleDateString() : 'N/A'}</td>
+                            <tr className="trTable" key={league.id}>
+                                <td className="tdTable" data-label="ID" >{league.id}</td>
+                                <td className="tdTable" data-label="Name">{league.leagueName}</td>
+                                <td className="tdTable" data-label="Status">{league.status}</td>
+                                <td className="tdTable" data-label="Start Date">{league.startDate ? new Date(league.startDate).toLocaleDateString() : 'N/A'}</td>
+                                <td className="tdTable" data-label="End Date">{league.endDate ? new Date(league.endDate).toLocaleDateString() : 'N/A'}</td>
                                 {/* <td>{league.rounds ? league.rounds.join(', ') : 'N/A'}</td> */}
                                 {/* <td data-label="ID">{league.softDelete ?? 'N/A'}</td> */}
                                 {/* <td>{league.winnerLeague ?? 'N/A'}</td> */}
-                                <td className="td" data-label="Enroll" id="enroll-btn">
+                                <td className="tdTable" data-label="Enroll" id="enroll-btn">
                                     {league.status === "Initial state" && (
-                                        <button className="enroll enroll_active" onClick={() => handleEnroll(league.id)}>Inscribirse</button>
+                                        <button className="control-btn" onClick={() => handleEnroll(league.id)}>Inscribirse</button>
                                     )}
                                 </td>
                             </tr>

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { About } from "../Pages/About";
+import UpdateUserComponent from "../Pages/About";
 import {Dashboard} from '../Pages/Dashboard';
 import { Analytics } from "../Pages/Analytics";
 import { HomePage } from "../Pages/HomePage";
@@ -15,6 +15,8 @@ import { Controller } from "../AdminPanel/Controller";
 import UserController from "../AdminPanel/UserController";
 import LogoutButton from "../Component/Logout";
 import EditLeague from "../AdminPanel/EditLeague";
+import RoundController from "../AdminPanel/RoundController";
+import EditWinner from "../AdminPanel/EditWinner";
 
 
 
@@ -34,7 +36,7 @@ const AppRouter = () => {
                     <Route path="dashboard" element={<Dashboard />} /> 
                     <Route path="analytics" element={<Analytics />} />
                     <Route path="dashboard/leagues" element={<Leagues />} />
-                    <Route path="about" element={<About />} />
+                    <Route path="about" element={<UpdateUserComponent />} />
                     <Route path="logout" element={<LogoutButton />} />                
                 </Route>
 
@@ -43,9 +45,10 @@ const AppRouter = () => {
                     <Route path="adminhomepage" element={<AdminHomePage />} />
                     <Route path="leaguecontroller" element={<LeagueController />} />
                     <Route path="editleague" element={<EditLeague />} />
+                    <Route path="roundcontroller" element={<RoundController />} />
+                    <Route path="editwinner" element={<EditWinner />} />
                     <Route path="leaguecontroller/controller" element={<Controller />} /> 
                     <Route path="usercontroller" element={<UserController />} />
-                    <Route path="about" element={<About />} />
                     <Route path="logout" element={<LogoutButton />} />                
                 </Route>
             </Routes>

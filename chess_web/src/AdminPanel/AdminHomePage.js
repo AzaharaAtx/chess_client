@@ -54,7 +54,6 @@ export const AdminHomePage = () => {
                 <div className="navigation-menu">
                     <DropdownLeague />
                     <DropdownUser />
-                    <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
                     <LogoutButton className="navigation-menu-link" />
                 </div>
             </div>

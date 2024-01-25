@@ -35,8 +35,8 @@ export const DropdownUser = () => {
 			</button>
 			{isOpen && (
 				<ul className="dropdown-list">
-					<Link className="navigation-menu-link" to="/usercontroller">User List</Link>
-					<li>Elemento 2</li>
+					<li><Link className="navigation-menu-link" to="/usercontroller">User List</Link></li>
+					<li><Link className="navigation-menu-link" to="/usercontroller">User List</Link></li>
 					<li>Elemento 3</li>
 				</ul>
 				)}
@@ -74,9 +74,9 @@ export const  DropdownLeague = () => {
 			</button>
 			{isOpen && (
 				<ul className="dropdown-list">
-					<Link className="navigation-menu-link" to="/leaguecontroller">Create League</Link>
-					<Link className="navigation-menu-link" to="/editleague">Edit Leagues</Link>
-					<Link className="navigation-menu-link" to="/usercontroller">Create League</Link>
+					<li><Link className="navigation-menu-link" to="/leaguecontroller">Create League</Link></li>
+					<li><Link className="navigation-menu-link" to="/editleague">Edit Leagues</Link></li>
+					<li><Link className="navigation-menu-link" to="/roundcontroller">Generator</Link></li>
 				</ul>
 				)}
 		</div>

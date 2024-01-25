@@ -14,8 +14,7 @@ export const Dashboard = () => {
         <div className="home-page-container">
             <div className="navigation-menu">
                 <Link className="navigation-menu-link" to="/homepage">Homepage</Link>
-                <Link className="navigation-menu-link" to="/about">About</Link>
-                <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
+                <Link className="navigation-menu-link" to="/about">Profile</Link>
                 <LogoutButton /> 
             </div>
             <br />
@@ -25,9 +24,6 @@ export const Dashboard = () => {
                 {showLeagues ? 'Hide ' : 'Show Open Leagues'}
                 </button>
             </div>
-            <br />
-            <br />
-            
         </div>
         );
 };

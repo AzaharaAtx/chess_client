@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
 import LogoutButton from '../Component/Logout';
-import DropdownMenu from './DropdownMenu';
+import { DropdownLeague, DropdownUser } from './DropdownMenu';
 
 // import '.."homepage.css';
 import '../Styles/userTable.css';
@@ -13,13 +13,14 @@ const UserController = () =>{
     const [editingUserId, setEditingUserId] = useState(null);
     const [editedFields, setEditedFields] = useState({});
     const [editMsg, setMsg] = useState('');
-    
+    const [searchTerm, setSearchTerm] = useState(''); // Nuevo estado para el término de búsqueda
+
+
     useEffect(() => {
         const fetchUsers = async () => {
             try {
                 const request = await axios.get("http://127.0.0.1:8000/api/user/list");
-                const userData = request.data;
-                
+                const userData = request.data;   
                 setUser(userData);
             } 
             catch (error) {
@@ -36,32 +37,36 @@ const UserController = () =>{
 
     const handleSaveEdit = async userId => {
         try {
-            const response = await axios.put(`http://127.0.0.1:8000/api/user/${userId}`, {...(editedFields || {})});
-                    
-            console.log("Edit", response.data);
-    
+            const isPasswordEdited = editedFields.password !== undefined;
+
+            const editedData = {
+                ...editedFields,
+                password: isPasswordEdited ? editedFields.password : undefined,
+            };
+            const response = await axios.put(`http://127.0.0.1:8000/api/user/${userId}`, {...(editedData || {})});
+                        
             if (response.status === 200) {
-            // Actualizar el estado de los usuarios después de la edición
-            setMsg("Usuario editado correctamente");
+                setMsg("Usuario editado correctamente");
 
-            const updatedUsers = user.map(currentUser =>
+                const updatedUsers = user.map(currentUser =>
                 currentUser.id === userId ? {  ...currentUser, ...editedFields } : currentUser
-            );
-            setUser(updatedUsers);
-            setEditingUserId(null);
-            setEditedFields({}); 
+                );
 
-            // Recargar la lista de usuarios
-            const updatedRequest = await axios.get("http://127.0.0.1:8000/api/user/list");
-            const updatedUserData = updatedRequest.data;
-            setUser(updatedUserData);
+                setUser(updatedUsers);
+                setEditingUserId(null);
+                setEditedFields({}); 
+
+                const updatedRequest = await axios.get("http://127.0.0.1:8000/api/user/list");
+                const updatedUserData = updatedRequest.data;
+                setUser(updatedUserData);
             
             } else {
-            console.error('Error al editar el usuario');
-            setMsg("Error al editar usuario");
+                console.error('Error al editar el usuario');
+                setMsg("Error al editar usuario");
             }
         } catch (error) {
             console.error('Error al enviar la solicitud de edición', error);
+            setMsg("Error al editar usuario");
         }
     };
 
@@ -91,15 +96,23 @@ const UserController = () =>{
 
         return (
             <>
-                <div className="home-page-container">
+            <div className="home-page-container">
                 <div className="navigation-menu">
-                <Link className="navigation-menu-link" to="/leaguecontroller">Leagues</Link>
-                <DropdownMenu />
-                <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
-                <LogoutButton className="navigation-menu-link" />
+                    <DropdownLeague />
+                    <DropdownUser />
+                    <LogoutButton className="navigation-menu-link" />
                 </div>
-                </div>
-                <div className="tableContainer">
+            </div>
+            <div className="tableContainer">
+            <div>
+                <input 
+                    className="search"
+                    type="text"
+                    placeholder="Buscar por nombre"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
                     <table className="tableuser">
                         <thead className="tableThead">
                             <tr className="tableTr">
@@ -119,10 +132,13 @@ const UserController = () =>{
                             </tr>
                     </thead>
                         <tbody className="tableTbody">
-                        { user.map(users => (
+                        { user
+                            .filter((user) =>
+                                user.full_name.toLowerCase().includes(searchTerm.toLowerCase())
+                            )
+                            .map(users => (
                             <tr key={users.id}>
                                 <td className="tableTd" data-label="ID">{users.id}</td>
-                                {/* <td className="tableTd" data-label="Email">{users.email}</td> */}
                                 <td className="tableTd" data-label="Email">
                                     {editingUserId === users.id ? (
                                     <input
@@ -134,7 +150,6 @@ const UserController = () =>{
                                     users.email
                                     )}
                                 </td>
-                                {/* <td className="tableTd" data-label="Role">{users.roles}</td> */}
                                 <td className="tableTd" data-label="Role">
                                     {editingUserId === users.id ? (
                                     <input
@@ -146,7 +161,6 @@ const UserController = () =>{
                                     users.roles
                                     )}
                                 </td>
-                                {/* <td className="tableTd" data-label="Name">{users.full_name}</td> */}
                                 <td className="tableTd" data-label="Name">
                                     {editingUserId === users.id ? (
                                     <input
@@ -158,7 +172,6 @@ const UserController = () =>{
                                     users.full_name
                                     )}
                                 </td>
-                                {/* <td className="tableTd" data-label="Last Name">{users.last_name}</td> */}
                                 <td className="tableTd" data-label="Last Name">
                                     {editingUserId === users.id ? (
                                     <input
@@ -170,7 +183,6 @@ const UserController = () =>{
                                     users.last_name
                                     )}
                                 </td>
-                                {/* <td className="tableTd" data-label="Password">{users.password}</td> */}
                                 <td className="tableTd" data-label="Password">
                                     {editingUserId === users.id ? (
                                     <input
@@ -179,10 +191,9 @@ const UserController = () =>{
                                         onChange={e => handleFieldChange('password', e.target.value)}
                                     />
                                     ) : (
-                                    users.password
+                                    '********'
                                     )}
                                 </td>
-                                {/* <td className="tableTd" data-label="Username">{users.username_in_chess}</td> */}
                                 <td className="tableTd" data-label="Username">
                                     {editingUserId === users.id ? (
                                     <input
@@ -194,14 +205,14 @@ const UserController = () =>{
                                     users.username_in_chess
                                     )}
                                 </td>
-                                <td>
+                                <td className="tableTd">
                                     {editingUserId === users.id ? (
                                         <>
-                                        <button onClick={() => handleSaveEdit(users.id, 'username_in_chess')}>Guardar</button>
-                                        <button onClick={() => { handleCancelEdit(users.id)}}>Cancelar</button>
+                                        <button className='btn-control' onClick={() => handleSaveEdit(users.id)}>Guardar</button>
+                                        <button className='btn-control' onClick={() => { handleCancelEdit(users.id)}}>Cancelar</button>
                                         </>
                                     ) : (
-                                        <button onClick={() => handleEdit(users.id)}>Editar</button>
+                                        <button className='btn-control' onClick={() => handleEdit(users.id)}>Editar</button>
                                     )}
                                 </td>
                                 {/* <td className="tableTd" data-label="Token">{users.token}</td> */}
@@ -218,10 +229,8 @@ const UserController = () =>{
                         {editMsg && <p>{editMsg}</p>}
                     </div>
                 </>
-            )
-    }
-            
-            // https://codepen.io/force-framework/pen/MXwdvO 
-            
+    )
+}
+                        
 export default UserController;
             

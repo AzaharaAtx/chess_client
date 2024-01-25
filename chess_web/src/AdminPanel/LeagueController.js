@@ -27,7 +27,6 @@ const LeagueController = () => {
             
             if(request.status === 200) {
                 setCreatedLeagueId(dataResponse.data.id); 
-                console.log(request.data);
             } 
             else {
                 console.log("Algo ha salido mal", request.data);
@@ -45,7 +44,6 @@ const LeagueController = () => {
                         <Link className="navigation-menu-link" to="/adminhomepage">Homepage</Link>
                         <DropdownLeague />
                         <DropdownUser />
-                        <Link className="navigation-menu-link" to="/analytics">Analytics</Link>
                         <LogoutButton className="navigation-menu-link" /> 
                     </div>
             </div>
@@ -65,24 +63,19 @@ const LeagueController = () => {
                             autoComplete="off" />
                         <button className="btnLeague" type="submit">Create League</button>
                     </form>
-                </div>
-                
-                {response && (
+                    {response && (
                     <div className="containerCreated">
                         <h2>{response.message}</h2>
-                            <p>ID de la Liga: {response.data.id}</p>
-                            <p>Nombre de la Liga: {response.data.leagueName}</p>
-                            <p>Estado: {response.data.status}</p>
-                        <div>
-                            {showLeagues && <Controller />}
-                            <button className="btnLeague" onClick={() => setShowLeagues(!showLeagues)}>
-                                {showLeagues ? 'Ocultar Ligas' : 'Mostrar Ligas'}
-                            </button>
-                            
-                        </div>
+                            <p className="createdLeague">ID de la Liga: {response.data.id}</p>
+                            <p className="createdLeague">Nombre de la Liga: {response.data.leagueName}</p>
+                            <p className="createdLeague">Estado: {response.data.status}</p>
                     </div>
-                )}
-            </div>
+                )} 
+
+                </div>
+                </div>
+                
+                
         </>
     );
 

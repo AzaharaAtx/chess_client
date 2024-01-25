@@ -1,51 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-/* .tableContainer {
-    justify-content: center;
-    
-}
-
-.table {
-    font-family: 'Montserrat', sans-serif;
-    margin: 1em 0;
-    max-width: 50px;
-}
-
-.tableThead {
-    text-align: center;
-    background-color: rgb(119, 62, 211);
-    border-radius: 10px;
-    max-width: 50px;
-    
-}
-
-.tableTr {
-    text-align: center;
-    max-width: 50px;
-}
-
-.tableTh {
-    text-align: center;
-    white-space: nowrap;
-    max-width: 50px;
-}
-
-.tableTbody {
-    text-align: center;
-    max-width: 50px;
-}
-
-.tableTd {
-    text-align: center;
-    max-width: 50px;
-} */
-
-
 .tableContainer {
     margin: 15px;
     max-height: 400px; 
-    overflow-y: auto; 
-    overflow-x: auto; 
+
+    
+}
+
+.search {
+    margin: 10px 10px 10px 30px;
 }
 
 .tableuser {
@@ -105,5 +68,27 @@
         text-align: center;
     }
 }
+
+.btn-control {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    border: none;
+    background-color: white;
+    padding: 10px 10px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: #7439db;
+    transition-duration: 0.4s;
+    margin-top: 10px;
+}
+
+.btn-control:hover {
+    color: #7439db;
+    background-color: rgb(225, 192, 255);
+}
+
+
 
 
